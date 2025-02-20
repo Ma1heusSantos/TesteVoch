@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\Observers\FlagObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+#[ObservedBy([FlagObserver::class])]
+
 
 class Flag extends Model
 {
@@ -22,12 +27,5 @@ class Flag extends Model
     public function units(): HasMany
     {
         return $this->hasMany(Unit::class);
-    }
-
-    protected static function booted()
-    {
-        static::deleting(function ($flag) {
-            $flag->units()->delete(); 
-        });
     }
 }

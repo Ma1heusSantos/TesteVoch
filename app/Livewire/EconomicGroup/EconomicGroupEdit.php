@@ -14,7 +14,7 @@ class EconomicGroupEdit extends Component
     public $nome;
 
     protected $rules = [
-        'nome' => 'required|string|max:255',
+        'nome' => 'string|max:255',
     ];
 
 

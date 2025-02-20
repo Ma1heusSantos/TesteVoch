@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EconomicGroup;
+use App\Models\Flag;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

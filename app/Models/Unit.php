@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Observers\UnitObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+#[ObservedBy([UnitObserver::class])]
 
 class Unit extends Model
 {
@@ -21,12 +25,5 @@ class Unit extends Model
     public function collaborators(): HasMany
     {
         return $this->hasMany(Collaborator::class);
-    }
-
-    protected static function booted()
-    {
-        static::deleting(function ($unit) {
-            $unit->collaborators()->delete(); 
-        });
     }
 }
