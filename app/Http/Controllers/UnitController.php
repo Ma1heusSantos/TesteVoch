@@ -76,7 +76,7 @@ class UnitController extends Controller
             }
             
             $unit->delete();
-            Log::info("Usuário ". Auth::user()->name .' deletou a unidade '.$unit->nome);
+            $this->sendRegisterToLog($unit);
             
             DB::commit();
             return redirect()->route('unit.show');
@@ -84,5 +84,13 @@ class UnitController extends Controller
             DB::rollBack();
             Log::info($e->getMessage());
         }
+    }
+    public function sendRegisterToLog($unit){
+        Log::info("Usuário ". Auth::user()->email .' editou a unidade com os seguintes dados: ' . 
+            'nome_fantasia: ' . $unit->nome_fantasia . ', ' .
+            'razao_social: ' . $unit->razao_social . ', ' .
+            'cnpj: ' . $unit->cnpj . ', ' .
+            'flag ID: ' . $unit->flag_id
+        );
     }
 }

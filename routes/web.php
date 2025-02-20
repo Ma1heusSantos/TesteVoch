@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollaboratorController;
 use App\Http\Controllers\EconomicGroupController;
 use App\Http\Controllers\FlagController;
 use App\Http\Controllers\ProfileController;
@@ -43,10 +44,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('collaborator')->group(function () {
-        Route::get('/show', [UnitController::class, 'show'])->name('collaborator.show');
-        Route::get('/create', [UnitController::class, 'create'])->name('collaborator.create');
-        Route::get('/edit/{id}', [UnitController::class, 'edit'])->name('collaborator.edit');
-        Route::get('/destroy/{id}', [UnitController::class, 'destroy'])->name('collaborator.destroy');    
+        Route::get('/show', [CollaboratorController::class, 'show'])->name('collaborator.show');
+        Route::get('/create', [CollaboratorController::class, 'create'])->name('collaborator.create');
+        Route::get('/edit/{id}', [CollaboratorController::class, 'edit'])->name('collaborator.edit');
+        Route::get('/destroy/{id}', [CollaboratorController::class, 'destroy'])->name('collaborator.destroy');    
     });
 });
 

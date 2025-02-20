@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('cpf');
             $table->unsignedBigInteger(column: 'unit_id');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');

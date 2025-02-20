@@ -29,11 +29,12 @@ class EconomicGroupEdit extends Component
         $this->validate();
        try{
             $economicGroup = EconomicGroup::find($this->economicGroup->id);
-            Log::info("Usuário ". Auth::user()->name .' atualizou o grupo '.$economicGroup->nome." para ".$this->nome);
+            
             $economicGroup->update([
                 'nome' => $this->nome,  
             ]);
-
+            
+            $this->sendRegisterToLog($economicGroup);
             session()->flash('message', 'Grupo Econômico alterado com sucesso!');
             return redirect()->route('economicGroup.show');
        }catch(Exception $e){
@@ -41,6 +42,11 @@ class EconomicGroupEdit extends Component
        }
     }
     
+    public function sendRegisterToLog($economicGroup){
+        Log::info("Usuário ". Auth::user()->email .' editou um Grupo economico com os seguintes dados: ' . 
+            'economicGroup: ' . $economicGroup->nome . ', ' 
+        );
+    }
     public function render()
     {
         return view('livewire.economic-group.economic-group-edit');

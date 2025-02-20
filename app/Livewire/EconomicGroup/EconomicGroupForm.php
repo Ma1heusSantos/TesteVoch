@@ -20,16 +20,22 @@ class EconomicGroupForm extends Component
     {
         $this->validate();
         try{
-            EconomicGroup::create([
+            $economicGroup = EconomicGroup::create([
                 'nome' => $this->nome,
             ]);
     
-            Log::info("Usuário ". Auth::user()->name .' criou '.$this->nome);
+            $this->sendRegisterToLog($economicGroup);
             session()->flash('message', 'Grupo Econômico criado com sucesso!');
             return redirect()->route('economicGroup.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
         }
+    }
+
+    public function sendRegisterToLog($economicGroup){
+        Log::info("Usuário ". Auth::user()->email .' criou um Grupo economico com os seguintes dados: ' . 
+            'economicGroup: ' . $economicGroup->nome . ', ' 
+        );
     }
     public function render()
     {

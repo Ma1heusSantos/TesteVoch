@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collaborator;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CollaboratorController extends Controller
 {
@@ -19,7 +24,7 @@ class CollaboratorController extends Controller
      */
     public function create()
     {
-        //
+        return view('collaborator.create');
     }
 
     /**
@@ -33,9 +38,10 @@ class CollaboratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $collaborators = Collaborator::with('unit')->get();
+        return view('collaborator.show',['collaborators'=>$collaborators]);
     }
 
     /**
@@ -43,7 +49,8 @@ class CollaboratorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $collaborator = Collaborator::with('unit')->where('id', '=', $id)->first();
+        return view('collaborator.edit',['collaborator'=>$collaborator]);
     }
 
     /**
@@ -59,6 +66,29 @@ class CollaboratorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $collaborator = Collaborator::find($id);
+            if (!$collaborator){
+                return redirect()->back()->withErrors('Colaborador não encontrada.')->withInput();
+            }
+            
+            $collaborator->delete();
+            $this->sendRegisterToLog($collaborator);
+            
+            DB::commit();
+            return redirect()->route('collaborator.show');
+        }catch(Exception $e){
+            DB::rollBack();
+            Log::info($e->getMessage());
+        }
+    }
+    public function sendRegisterToLog($collaborator){
+        Log::info("Usuário ". Auth::user()->email .' criou o colaborador com os seguintes dados: ' . 
+            'Nome: ' . $collaborator->nome . ', ' .
+            'Email: ' . $collaborator->email . ', ' .
+            'CPF: ' . $collaborator->cpf . ', ' .
+            'unit ID: ' . $collaborator->unit
+        );
     }
 }

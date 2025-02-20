@@ -33,14 +33,14 @@ class UnitForm extends Component
     {
         $this->validate();
         try{
-            Unit::create([
+            $unit = Unit::create([
                 'nome_fantasia'=> $this->nomeFantasia,
                 'razao_social'=> $this->razaoSocial,
                 'cnpj'=> $this->cnpj,
                 'flag_id'=> $this->flag
             ]);
     
-            Log::info("Usuário ". Auth::user()->name .'  criou a unidade '.$this->nomeFantasia);
+            $this->sendRegisterToLog($unit);
             session()->flash('message', 'unidade criada com sucesso!');
             return redirect()->route('unit.show');
 
@@ -48,6 +48,15 @@ class UnitForm extends Component
             Log::info("error: " . $e->getMessage());
         }
       
+    }
+
+    public function sendRegisterToLog($unit){
+        Log::info("Usuário ". Auth::user()->email .' criou uma unidade com os seguintes dados: ' . 
+            'nome_fantasia: ' . $unit->nome_fantasia . ', ' .
+            'razao_social: ' . $unit->razao_social . ', ' .
+            'cnpj: ' . $unit->cnpj . ', ' .
+            'flag ID: ' . $unit->flag_id
+        );
     }
     public function render()
     {

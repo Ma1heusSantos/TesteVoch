@@ -75,12 +75,18 @@ class EconomicGroupController extends Controller
             }
             
             $economicGroup->delete();
-            Log::info("Usuário ". Auth::user()->name .' deletou o grupo '.$economicGroup->nome);
+            $this->sendRegisterToLog($economicGroup);
             DB::commit();
             return redirect()->route('economicGroup.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
         }
+    }
+
+    public function sendRegisterToLog($economicGroup){
+        Log::info("Usuário ". Auth::user()->email .' deletou um Grupo economico com os seguintes dados: ' . 
+            'economicGroup: ' . $economicGroup->nome . ', ' 
+        );
     }
 }
