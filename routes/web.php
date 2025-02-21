@@ -40,7 +40,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/show', [UnitController::class, 'show'])->name('unit.show');
         Route::get('/create', [UnitController::class, 'create'])->name('unit.create');
         Route::get('/edit/{id}', [UnitController::class, 'edit'])->name('unit.edit');
-        Route::get('/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');    
+        Route::get('/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
+        Route::get('/collaboratorForUnit', [UnitController::class, 'collaboratorForUnit']);
+     
     });
 
     Route::prefix('collaborator')->group(function () {

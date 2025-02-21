@@ -34,18 +34,11 @@ class EconomicGroupEdit extends Component
                 'nome' => $this->nome,  
             ]);
             
-            $this->sendRegisterToLog($economicGroup);
             session()->flash('message', 'Grupo Econômico alterado com sucesso!');
             return redirect()->route('economicGroup.show');
        }catch(Exception $e){
         Log::info($e->getMessage());
        }
-    }
-    
-    public function sendRegisterToLog($economicGroup){
-        Log::info("Usuário ". Auth::user()->email .' editou um Grupo economico com os seguintes dados: ' . 
-            'economicGroup: ' . $economicGroup->nome . ', ' 
-        );
     }
     public function render()
     {

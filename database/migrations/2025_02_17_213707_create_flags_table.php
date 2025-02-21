@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table->unsignedBigInteger('economic_group_id');
             $table->timestamps();
-            $table->softDeletes();
-
+            
             $table->foreign('economic_group_id')->references('id')->on('economic_groups')->onDelete('cascade');
         });
     }

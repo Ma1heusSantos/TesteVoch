@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string(column: "cnpj");
             $table->unsignedBigInteger(column: 'flag_id'); 
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
         });

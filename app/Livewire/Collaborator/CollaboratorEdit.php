@@ -30,7 +30,6 @@ class CollaboratorEdit extends Component
         try{
 
             $collaborator = Collaborator::find($this->collaborator->id);
-            $this->sendRegisterToLog($collaborator);
             $campos = [
              'nome' => !empty($this->nome) ?  $this->nome : $collaborator->nome,
              'email' => !empty($this->email) ? $this->email : $collaborator->email,
@@ -46,14 +45,7 @@ class CollaboratorEdit extends Component
         }
     }
 
-    public function sendRegisterToLog($collaborator){
-        Log::info("Usuário ". Auth::user()->email .' criou o colaborador com os seguintes dados: ' . 
-            'Nome: ' . $collaborator->nome . ', ' .
-            'Email: ' . $collaborator->email . ', ' .
-            'CPF: ' . $collaborator->cpf . ', ' .
-            'unit ID: ' . $collaborator->unit
-        );
-    }
+ 
     public function mount(){
         $this->units = Unit::all();
     }

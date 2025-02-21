@@ -3,7 +3,8 @@
 namespace App\Observers;
 
 use App\Models\EconomicGroup;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class EconomicGroupObserver
 {
@@ -12,7 +13,7 @@ class EconomicGroupObserver
      */
     public function created(EconomicGroup $economicGroup): void
     {
-        //
+        $this->sendRegisterToLog($economicGroup,'Criou');
     }
 
     /**
@@ -20,7 +21,7 @@ class EconomicGroupObserver
      */
     public function updated(EconomicGroup $economicGroup): void
     {
-        //
+        $this->sendRegisterToLog($economicGroup,'Atualizou');
     }
 
     /**
@@ -28,8 +29,7 @@ class EconomicGroupObserver
      */
     public function deleted(EconomicGroup $economicGroup): void
     {
-        $economicGroup->load('flags');
-        $economicGroup->flags()->delete(); 
+        $this->sendRegisterToLog($economicGroup,'excluiu');
     }
     
 
@@ -47,5 +47,12 @@ class EconomicGroupObserver
     public function forceDeleted(EconomicGroup $economicGroup): void
     {
         //
+    }
+
+
+    public function sendRegisterToLog(EconomicGroup $economicGroup,String $verb){
+        Log::info("Usuário ". Auth::user()->email .' '. $verb .' um Grupo economico com os seguintes dados: ' . 
+            'economicGroup: ' . $economicGroup->nome . ', ' 
+        );
     }
 }

@@ -31,7 +31,6 @@ class FlagEdit extends Component
              'economic_group_id' => !empty($this->group) ? $this->group : $flag->economic_group_id 
          ];
             $flag->update($campos);
-            $this->sendRegisterToLog($flag);
      
              session()->flash('message', 'Grupo Econômico alterado com sucesso!');
              return redirect()->route('flag.show');
@@ -40,12 +39,7 @@ class FlagEdit extends Component
         }
     }
 
-    public function sendRegisterToLog($flag){
-        Log::info("Usuário ". Auth::user()->email .' criou uma Bandeira com os seguintes dados: ' . 
-            'nome: ' . $flag->nome . ', ' .
-            'economic_group_id: ' . $flag->economic_group_id . ', ' 
-        );
-    }
+  
     public function render()
     {
         $this->economicGroup = EconomicGroup::all();

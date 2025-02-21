@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Unit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class UnitObserver
 {
@@ -11,7 +13,7 @@ class UnitObserver
      */
     public function created(Unit $unit): void
     {
-        //
+        $this->sendRegisterToLog($unit,'Criou');
     }
 
     /**
@@ -19,7 +21,7 @@ class UnitObserver
      */
     public function updated(Unit $unit): void
     {
-        //
+        $this->sendRegisterToLog($unit,'Atualizou');
     }
 
     /**
@@ -27,8 +29,7 @@ class UnitObserver
      */
     public function deleted(Unit $unit): void
     {
-        $unit->load('collaborators');
-        $unit->collaborators()->delete(); 
+       $this->sendRegisterToLog($unit,'Deletou');
     }
 
     /**
@@ -45,5 +46,14 @@ class UnitObserver
     public function forceDeleted(Unit $unit): void
     {
         //
+    }
+
+    public function sendRegisterToLog(Unit $unit,String $verb){
+        Log::info("Usuário ". Auth::user()->email .' ' .$verb.' a unidade com os seguintes dados: ' . 
+            'nome_fantasia: ' . $unit->nome_fantasia . ', ' .
+            'razao_social: ' . $unit->razao_social . ', ' .
+            'cnpj: ' . $unit->cnpj . ', ' .
+            'flag ID: ' . $unit->flag_id
+        );
     }
 }

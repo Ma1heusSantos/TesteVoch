@@ -30,24 +30,17 @@ class FlagForm extends Component
         $this->validate();
         
         try{
-            $flag = Flag::create([
+            Flag::create([
                 'nome' => $this->nome,
                 'economic_group_id'=> $this->group
             ]);
-            $this->sendRegisterToLog($flag);
+  
             session()->flash('message', 'Bandeira criada com sucesso!');
             return redirect()->route('flag.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
         }
         
-    }
-
-    public function sendRegisterToLog($flag){
-        Log::info("Usuário ". Auth::user()->email .' criou uma Bandeira com os seguintes dados: ' . 
-            'nome: ' . $flag->nome . ', ' .
-            'economic_group_id: ' . $flag->economic_group_id . ', ' 
-        );
     }
     public function render()
     {

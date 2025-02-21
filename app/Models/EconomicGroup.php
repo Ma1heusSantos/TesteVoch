@@ -6,7 +6,6 @@ use App\Observers\EconomicGroupObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
  
 #[ObservedBy([EconomicGroupObserver::class])]
@@ -14,10 +13,9 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 class EconomicGroup extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = ['nome'];
-    protected $dates = ['deleted_at'];
 
 
     public function flags(): HasMany

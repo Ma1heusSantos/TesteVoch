@@ -38,7 +38,6 @@ class UnitEdit extends Component
              'flag_id'=>!empty($this->flag) ? $this->flag : $unit->flag_id,
          ];
             $unit->update($campos);
-            $this->sendRegisterToLog($unit);
             
              session()->flash('message', 'unidade alterada com sucesso!');
              return redirect()->route('unit.show');
@@ -47,14 +46,7 @@ class UnitEdit extends Component
         }
     }
 
-    public function sendRegisterToLog($unit){
-        Log::info("Usuário ". Auth::user()->email .' editou a unidade com os seguintes dados: ' . 
-            'nome_fantasia: ' . $unit->nome_fantasia . ', ' .
-            'razao_social: ' . $unit->razao_social . ', ' .
-            'cnpj: ' . $unit->cnpj . ', ' .
-            'flag ID: ' . $unit->flag_id
-        );
-    }
+  
     public function mount(){
         $this->flags = Flag::all();
     }

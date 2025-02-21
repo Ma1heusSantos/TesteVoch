@@ -17,9 +17,9 @@ class FlagShow extends Component
     {
        try{
             $this->flag = Flag::where('nome', 'like', '%' . $this->search . '%')
-            ->orWhereHas('economicGroup', function ($query) {
-            $query->where('nome', 'like', '%' . $this->search . '%');
-            })->get();
+               ->orWhereHas('economicGroup', function ($query) {
+                  $query->where('nome', 'like', '%' . $this->search . '%');
+               })->get();
 
             return view('livewire.flag.flag-show',['flag'=>$this->flag]);
        }catch(Exception $e){

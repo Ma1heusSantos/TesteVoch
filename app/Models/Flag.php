@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
  
 #[ObservedBy([FlagObserver::class])]
@@ -15,9 +14,8 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 class Flag extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
     protected $fillable = ['nome','economic_group_id'];
-    protected $dates = ['deleted_at'];
     
     public function economicGroup():BelongsTo
     {

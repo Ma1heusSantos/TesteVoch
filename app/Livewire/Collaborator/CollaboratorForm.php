@@ -34,14 +34,14 @@ class CollaboratorForm extends Component
     {
         $this->validate();
         try{
-            $collaborator = Collaborator::create([
+            Collaborator::create([
                 'nome'=> $this->nome,
                 'email'=> $this->email,
                 'cpf'=> $this->cpf,
                 'unit_id'=> $this->unit
             ]);
     
-            $this->sendRegisterToLog($collaborator);
+
             session()->flash('message', 'colaborador criado com sucesso!');
             return redirect()->route('collaborator.show');
 
@@ -51,14 +51,7 @@ class CollaboratorForm extends Component
       
     }
 
-    public function sendRegisterToLog($collaborator){
-        Log::info("Usuário ". Auth::user()->email .' criou o colaborador com os seguintes dados: ' . 
-            'Nome: ' . $collaborator->nome . ', ' .
-            'Email: ' . $collaborator->email . ', ' .
-            'CPF: ' . $collaborator->cpf . ', ' .
-            'unit ID: ' . $collaborator->unit
-        );
-    }
+
     public function render()
     {
         return view('livewire.collaborator.collaborator-form');

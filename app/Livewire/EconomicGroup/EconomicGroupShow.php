@@ -15,8 +15,7 @@ class EconomicGroupShow extends Component
     public function render()
     {
         try{
-            $this->economicGroup = EconomicGroup::where('nome', 'like', '%' . $this->search . '%')
-            ->get();
+            $this->economicGroup = EconomicGroup::where('nome', 'like', '%' . $this->search . '%')->get();
             return view('livewire.economic-group.economic-group-show',['economicGroup'=>$this->economicGroup]);
         }catch(Exception $e){
             Log::info($e->getMessage());

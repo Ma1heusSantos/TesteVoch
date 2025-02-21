@@ -76,8 +76,6 @@ class UnitController extends Controller
             }
             
             $unit->delete();
-            $this->sendRegisterToLog($unit);
-            
             DB::commit();
             return redirect()->route('unit.show');
         }catch(Exception $e){
@@ -85,12 +83,16 @@ class UnitController extends Controller
             Log::info($e->getMessage());
         }
     }
-    public function sendRegisterToLog($unit){
-        Log::info("Usuário ". Auth::user()->email .' editou a unidade com os seguintes dados: ' . 
-            'nome_fantasia: ' . $unit->nome_fantasia . ', ' .
-            'razao_social: ' . $unit->razao_social . ', ' .
-            'cnpj: ' . $unit->cnpj . ', ' .
-            'flag ID: ' . $unit->flag_id
-        );
+    public function collaboratorForUnit(){
+        $unidades = Unit::withCount('collaborators')->get();
+        $data = $unidades->map(function ($unit) {
+            return [
+                'name' => $unit->nome_fantasia,
+                'y' => $unit->collaborators_count, 
+            ];
+        });
+
+        return response()->json($data);
     }
+   
 }
