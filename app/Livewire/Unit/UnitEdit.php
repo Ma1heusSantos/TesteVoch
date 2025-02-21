@@ -20,9 +20,9 @@ class UnitEdit extends Component
     public $unit;
 
     protected $rules = [
-        'nomeFantasia' => 'string|max:255',
-        'razaoSocial'=> 'string|max:255',
-        'cnpj'=> 'unique:units,cnpj'
+        'nomeFantasia' => 'nullable|string|max:255',
+        'razaoSocial'=> 'nullable|string|max:255',
+        'cnpj'=> 'nullable|unique:units,cnpj'
     ];
 
     public function submit()

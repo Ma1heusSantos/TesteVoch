@@ -19,9 +19,9 @@ class CollaboratorEdit extends Component
     public $unit;
 
     protected $rules = [
-        'nome' => 'string|max:255',
-        'email' => 'email|string|max:255|unique:collaborators,email',
-        'cpf' => 'unique:collaborators,cpf'
+        'nome' => 'nullable|string|max:255',
+        'email' => 'nullable|email|string|max:255|unique:collaborators,email',
+        'cpf' => 'nullable|unique:collaborators,cpf'
     ];
 
     public function submit()

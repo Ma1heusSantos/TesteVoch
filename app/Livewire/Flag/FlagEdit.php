@@ -18,7 +18,7 @@ class FlagEdit extends Component
     public $economicGroup;
     
     protected $rules = [
-        'nome' => 'string|max:255',
+        'nome' => 'nullable|string|max:255',
     ];
     public function submit()
     {
