@@ -9,9 +9,10 @@
                     <input wire:model.live="search" type="text" placeholder="Pesquisar"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 transition duration-200" />
                     <a href="{{ route('unit.create') }}"
-                        class="bg-blue-600 mx-2 w-96 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-lg shadow-md transition duration-200 inline-block text-center">
+                        class="bg-blue-600 mx-2 w-96 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 inline-flex items-center justify-center text-center">
                         + Adicionar
                     </a>
+
                 </div>
             </div>
         </x-slot>
@@ -27,6 +28,10 @@
                                         class="px-6 py-4 text-lg font-semibold text-gray-700 dark:text-gray-100 text-center">
 
                                         Nome Fantasia:</th>
+                                    <th
+                                        class="px-6 py-4 text-lg font-semibold text-gray-700 dark:text-gray-100 text-center">
+
+                                        Razão Social:</th>
                                     <th
                                         class="px-6 py-4 text-lg font-semibold text-gray-700 dark:text-gray-100 text-center">
                                         CNPJ:</th>
@@ -46,6 +51,8 @@
                                         class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">
                                             {{ $group->nome_fantasia ?? 'não informado' }}</td>
+                                        <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">
+                                            {{ $group->razao_social ?? 'não informado' }}</td>
                                         <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">
                                             {{ $group->cnpj ?? 'não informado' }}</td>
                                         <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">

@@ -21,7 +21,7 @@ class CollaboratorFactory extends Factory
             'nome' => $this->faker->name, 
             'email' => $this->faker->unique()->safeEmail, 
             'cpf' => $this->generateCpf(), 
-            'unit_id' => Unit::factory(), 
+            'unit_id' => Unit::inRandomOrder()->first()->id, 
         ];
     }
 

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         Auth::login($user);
         EconomicGroup::factory(3)->create();
         Flag::factory(3)->create();
-        Unit::factory(3)->create();
+        Unit::factory(5)->create();
         Collaborator::factory(10)->create();
     }
 }

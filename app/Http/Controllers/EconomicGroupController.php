@@ -74,20 +74,12 @@ class EconomicGroupController extends Controller
             if (!$economicGroup) {
                 return redirect()->back()->withErrors('Grupo Econômico não encontrado.')->withInput();
             }
-            
             $economicGroup->delete();
-            $this->sendRegisterToLog($economicGroup);
             DB::commit();
             return redirect()->route('economicGroup.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
         }
-    }
-
-    public function sendRegisterToLog($economicGroup){
-        Log::info("Usuário ". Auth::user()->email .' deletou um Grupo economico com os seguintes dados: ' . 
-            'economicGroup: ' . $economicGroup->nome . ', ' 
-        );
     }
 }

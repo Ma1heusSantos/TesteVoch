@@ -19,7 +19,7 @@ class FlagFactory extends Factory
     {
         return [
             'nome' => $this->faker->word, 
-            'economic_group_id' => EconomicGroup::factory(), 
+            'economic_group_id' => EconomicGroup::inRandomOrder()->first()->id,
         ];
     }
 }

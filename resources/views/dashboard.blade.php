@@ -1,8 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex justify-between h-10">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+            <div class="flex">
+                <a href="{{ route('download') }}"
+                    class="bg-green-600 mx-2 w-96 hover:bg-green-700 active:bg-green-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 inline-flex items-center justify-center text-center">
+                    Baixar Relatório de colaboradores
+                </a>
+
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">

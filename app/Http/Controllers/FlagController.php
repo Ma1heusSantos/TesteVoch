@@ -76,7 +76,6 @@ class FlagController extends Controller
             }
             
             $flag->delete();
-            $this->sendRegisterToLog($flag);
             
             DB::commit();
             return redirect()->route('flag.show');
@@ -84,12 +83,5 @@ class FlagController extends Controller
             DB::rollBack();
             Log::info($e->getMessage());
         }
-    }
-
-    public function sendRegisterToLog($flag){
-        Log::info("Usuário ". Auth::user()->email .' criou uma Bandeira com os seguintes dados: ' . 
-            'nome: ' . $flag->nome . ', ' .
-            'economic_group_id: ' . $flag->economic_group_id . ', ' 
-        );
     }
 }

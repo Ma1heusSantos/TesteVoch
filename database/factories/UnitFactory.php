@@ -21,7 +21,7 @@ class UnitFactory extends Factory
             'nome_fantasia' => $this->faker->company, 
             'razao_social' => $this->faker->company, 
             'cnpj' => $this->generateCnpj(),
-            'flag_id' => Flag::factory(), 
+            'flag_id' => Flag::inRandomOrder()->first()->id, 
         ];
     }
 

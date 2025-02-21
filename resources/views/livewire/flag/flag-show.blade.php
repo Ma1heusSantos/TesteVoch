@@ -9,9 +9,10 @@
                     <input wire:model.live="search" type="text" placeholder="Pesquisar"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 transition duration-200" />
                     <a href="{{ route('flag.create') }}"
-                        class="bg-blue-600 mx-2 w-96 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-lg shadow-md transition duration-200 inline-block text-center">
+                        class="bg-blue-600 mx-2 w-96 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 inline-flex items-center justify-center text-center">
                         + Adicionar
                     </a>
+
                 </div>
             </div>
         </x-slot>

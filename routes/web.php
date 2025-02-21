@@ -1,11 +1,14 @@
 <?php
 
+use App\Exports\CollaboratorExport;
 use App\Http\Controllers\CollaboratorController;
 use App\Http\Controllers\EconomicGroupController;
 use App\Http\Controllers\FlagController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
+use App\Models\Collaborator;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -49,7 +52,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/show', [CollaboratorController::class, 'show'])->name('collaborator.show');
         Route::get('/create', [CollaboratorController::class, 'create'])->name('collaborator.create');
         Route::get('/edit/{id}', [CollaboratorController::class, 'edit'])->name('collaborator.edit');
-        Route::get('/destroy/{id}', [CollaboratorController::class, 'destroy'])->name('collaborator.destroy');    
+        Route::get('/destroy/{id}', [CollaboratorController::class, 'destroy'])->name('collaborator.destroy');
+        Route::get('download-relatorio', function () {
+            return Excel::download(new CollaboratorExport, 'relatorio-Collaboradores.xlsx');
+        })->name('download');
+            
     });
 });
 

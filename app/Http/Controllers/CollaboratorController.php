@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ExportCollaboratorJob;
 use App\Models\Collaborator;
 use Exception;
 use Illuminate\Http\Request;
@@ -74,7 +75,6 @@ class CollaboratorController extends Controller
             }
             
             $collaborator->delete();
-            $this->sendRegisterToLog($collaborator);
             
             DB::commit();
             return redirect()->route('collaborator.show');
@@ -83,12 +83,11 @@ class CollaboratorController extends Controller
             Log::info($e->getMessage());
         }
     }
-    public function sendRegisterToLog($collaborator){
-        Log::info("Usuário ". Auth::user()->email .' criou o colaborador com os seguintes dados: ' . 
-            'Nome: ' . $collaborator->nome . ', ' .
-            'Email: ' . $collaborator->email . ', ' .
-            'CPF: ' . $collaborator->cpf . ', ' .
-            'unit ID: ' . $collaborator->unit
-        );
+
+    public function export()
+    {
+        ExportCollaboratorJob::dispatch(Auth::user()->id);
+        return response()->json(['message' => 'Exportação iniciada!'], 200);
     }
+ 
 }
