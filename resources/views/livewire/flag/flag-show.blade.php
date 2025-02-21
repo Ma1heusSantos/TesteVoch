@@ -19,6 +19,11 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @if (session()->has('message'))
+                    <div class="bg-green-600 text-white p-4 mb-4 rounded-lg">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 @if (isset($flag) && !$flag->isEmpty())
                     <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                         <table class="min-w-full text-base text-left text-gray-500 dark:text-gray-100">

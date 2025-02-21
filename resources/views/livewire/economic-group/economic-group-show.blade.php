@@ -18,6 +18,11 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @if (session()->has('message'))
+                    <div class="bg-green-600 text-white p-4 mb-4 rounded-lg">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 @if (isset($economicGroup) && !$economicGroup->isEmpty())
                     @foreach ($economicGroup as $group)
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-4">
