@@ -38,7 +38,7 @@ class CollaboratorEdit extends Component
          ];
             $collaborator->update($campos);
      
-             session()->flash('message', 'Collaborador alterado com sucesso!');
+             session()->flash('message', 'Colaborador alterado com sucesso!');
              return redirect()->route('unit.show');
         }catch(Exception $e){
             Log::info($e->getMessage());

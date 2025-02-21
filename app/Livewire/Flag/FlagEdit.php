@@ -32,7 +32,7 @@ class FlagEdit extends Component
          ];
             $flag->update($campos);
      
-             session()->flash('message', 'Grupo Econômico alterado com sucesso!');
+             session()->flash('message', 'Bandeira alterada com sucesso!');
              return redirect()->route('flag.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
