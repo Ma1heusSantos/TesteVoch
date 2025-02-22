@@ -61,3 +61,8 @@ clone o arquivo .env-example e altere o nome para .env
     Rode na pasta do projeto o comando
 
     npm run dev
+
+### 7. usuario e senha
+
+usuario: admin@admin
+senha: admin
