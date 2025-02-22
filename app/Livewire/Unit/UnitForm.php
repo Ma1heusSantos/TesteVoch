@@ -21,7 +21,8 @@ class UnitForm extends Component
     protected $rules = [
         'nomeFantasia' => 'required|string|max:255',
         'razaoSocial'=> 'required|string|max:255',
-        'cnpj'=> 'required|unique:units,cnpj'
+        'cnpj'=> 'required|unique:units,cnpj',
+        'flag'=>'required'
     ];
     
     public function mount()

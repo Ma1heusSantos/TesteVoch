@@ -20,7 +20,8 @@ class CollaboratorForm extends Component
     protected $rules = [
         'nome' => 'required|string|max:255',
         'email' => 'required|email|string|max:255|unique:collaborators,email',
-        'cpf' => 'required|unique:collaborators,cpf'
+        'cpf' => 'required|unique:collaborators,cpf',
+        'unit'=> 'required'
     ];
     
 

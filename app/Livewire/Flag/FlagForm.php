@@ -16,7 +16,7 @@ class FlagForm extends Component
     public $group;
 
     protected $rules = [
-        'nome' => 'required|string|max:255',
+        'nome' => 'required|string|max:255|unique:flags,nome',
         'group'=> 'required'
     ];
 

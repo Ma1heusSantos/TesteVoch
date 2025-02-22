@@ -5,7 +5,6 @@ namespace App\Livewire\EconomicGroup;
 use App\Models\EconomicGroup;
 use Exception;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EconomicGroupForm extends Component
@@ -13,7 +12,7 @@ class EconomicGroupForm extends Component
     public $nome;
 
     protected $rules = [
-        'nome' => 'required|string|max:255',
+        'nome' => 'required|string|max:255|unique:economic_groups,nome',
     ];
 
     public function submit()

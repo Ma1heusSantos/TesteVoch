@@ -14,7 +14,7 @@ class EconomicGroupEdit extends Component
     public $nome;
 
     protected $rules = [
-        'nome' => 'nullable|string|max:255',
+        'nome' => 'required|nullable|string|max:255',
     ];
     
 
