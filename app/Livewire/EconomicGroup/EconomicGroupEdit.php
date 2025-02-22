@@ -35,10 +35,12 @@ class EconomicGroupEdit extends Component
                 'nome' => $this->nome,  
             ]);
             
-            session()->flash('message', 'Grupo Econômico alterado com sucesso!');
+            session()->flash('global-success',true);
+            session()->flash('message', 'Grupo Econômico editado com sucesso!');
             return redirect()->route('economicGroup.show');
        }catch(Exception $e){
         Log::info($e->getMessage());
+        session()->flash('global-error',true);
        }
     }
     public function render()

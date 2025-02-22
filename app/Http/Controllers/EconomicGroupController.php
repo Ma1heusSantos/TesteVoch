@@ -76,10 +76,13 @@ class EconomicGroupController extends Controller
             }
             $economicGroup->delete();
             DB::commit();
+            session()->flash('global-success',true);
+            session()->flash('message', 'Grupo Economico excluido com sucesso!');
             return redirect()->route('economicGroup.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
 }

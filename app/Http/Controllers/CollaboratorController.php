@@ -75,12 +75,15 @@ class CollaboratorController extends Controller
             }
             
             $collaborator->delete();
+            session()->flash('global-success',true);
+            session()->flash('message', 'Colaborador Excluido com sucesso!');
             
             DB::commit();
             return redirect()->route('collaborator.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
 

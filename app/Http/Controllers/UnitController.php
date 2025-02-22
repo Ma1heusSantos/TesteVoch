@@ -77,10 +77,13 @@ class UnitController extends Controller
             
             $unit->delete();
             DB::commit();
+            session()->flash('global-success',true);
+            session()->flash('message', 'Unidade excluido com sucesso!');
             return redirect()->route('unit.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
     public function collaboratorForUnit(){

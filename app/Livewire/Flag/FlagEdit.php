@@ -32,10 +32,12 @@ class FlagEdit extends Component
          ];
             $flag->update($campos);
      
-             session()->flash('message', 'Bandeira alterada com sucesso!');
+            session()->flash('global-success',true);
+            session()->flash('message', 'Bandeira editada com sucesso!');
              return redirect()->route('flag.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
 

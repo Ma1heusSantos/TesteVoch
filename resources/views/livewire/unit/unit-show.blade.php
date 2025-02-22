@@ -20,9 +20,6 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 @if (session()->has('message'))
-                    <div class="bg-green-600 text-white p-4 mb-4 rounded-lg">
-                        {{ session('message') }}
-                    </div>
                 @endif
                 @if (isset($unit) && !$unit->isEmpty())
                     <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
@@ -86,5 +83,24 @@
                 @endif
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                @if (session()->has('global-success'))
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: "{{ session('message') }}",
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    });
+                @elseif (session()->has('global-error'))
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: "{{ session('message') }}",
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                @endif
+            });
+        </script>
     </x-app-layout>
 </div>

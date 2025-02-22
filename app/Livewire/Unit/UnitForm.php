@@ -40,11 +40,13 @@ class UnitForm extends Component
                 'flag_id'=> $this->flag
             ]);
     
-            session()->flash('message', 'unidade criada com sucesso!');
+            session()->flash('global-success',true);
+            session()->flash('message', 'Unidade criada com sucesso!');
             return redirect()->route('unit.show');
 
         } catch (Exception $e) {
             Log::info("error: " . $e->getMessage());
+            session()->flash('global-error',true);
         }
       
     }

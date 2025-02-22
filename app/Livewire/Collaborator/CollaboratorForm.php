@@ -42,11 +42,13 @@ class CollaboratorForm extends Component
             ]);
     
 
-            session()->flash('message', 'colaborador criado com sucesso!');
+            session()->flash('global-success',true);
+            session()->flash('message', 'Colaborador criado com sucesso!');
             return redirect()->route('collaborator.show');
 
         } catch (Exception $e) {
             Log::info("error: " . $e->getMessage());
+            session()->flash('global-error',true);
         }
       
     }

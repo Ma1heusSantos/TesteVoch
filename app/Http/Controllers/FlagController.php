@@ -76,12 +76,14 @@ class FlagController extends Controller
             }
             
             $flag->delete();
-            
             DB::commit();
+            session()->flash('global-success',true);
+            session()->flash('message', 'Bandeira editada com sucesso!');
             return redirect()->route('flag.show');
         }catch(Exception $e){
             DB::rollBack();
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
 }

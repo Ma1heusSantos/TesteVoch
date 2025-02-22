@@ -35,10 +35,12 @@ class FlagForm extends Component
                 'economic_group_id'=> $this->group
             ]);
   
+            session()->flash('global-success',true);
             session()->flash('message', 'Bandeira criada com sucesso!');
             return redirect()->route('flag.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
         
     }

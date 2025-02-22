@@ -39,10 +39,12 @@ class UnitEdit extends Component
          ];
             $unit->update($campos);
             
-             session()->flash('message', 'unidade alterada com sucesso!');
+            session()->flash('global-success',true);
+            session()->flash('message', 'Unidade editada com sucesso!');
              return redirect()->route('unit.show');
         }catch(Exception $e){
             Log::info($e->getMessage());
+            session()->flash('global-error',true);
         }
     }
 
