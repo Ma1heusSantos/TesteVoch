@@ -16,8 +16,8 @@ class CollaboratorShow extends Component
             ->orWhere('email', 'like', '%' . $this->search . '%')
             ->orWhere('cpf', 'like', '%' . $this->search . '%')
             ->orWhereHas('unit', function ($query) {
-                $query->where('nome', 'like', '%' . $this->search . '%');
-            })->get();
+                $query->where('nome_fantasia', 'like', '%' . $this->search . '%');
+            })->with('unit')->get();
         return view('livewire.collaborator.collaborator-show');
     }
 }

@@ -49,7 +49,10 @@ class UnitEdit extends Component
     }
 
   
-    public function mount(){
+    public function mount($unit){
+        $this->nomeFantasia = $unit->nome_fantasia;
+        $this->razaoSocial = $unit->razao_social;
+        $this->flag = $unit->flag_id;
         $this->flags = Flag::all();
     }
     public function render()

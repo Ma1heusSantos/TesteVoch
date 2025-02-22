@@ -57,7 +57,7 @@
                                         <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">
                                             {{ $colaborator->cpf ?? 'não informado' }}</td>
                                         <td class="px-6 py-4 text-base text-center text-gray-900 dark:text-gray-100">
-                                            {{ $colaborator->unit_id->nome_fantasia ?? 'não informado' }}</td>
+                                            {{ $colaborator->unit->nome_fantasia ?? 'não informado' }}</td>
                                         <td class="px-6 py-4 text-base text-center">
                                             <a href="{{ route('collaborator.edit', $colaborator->id) }}"
                                                 class="bg-yellow-500 mr-4 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 text-xs">

@@ -48,7 +48,11 @@ class CollaboratorEdit extends Component
     }
 
  
-    public function mount(){
+    public function mount($collaborator){
+        $this->nome = $collaborator->nome;
+        $this->email = $collaborator->email;
+        $this->cpf = $collaborator->cpf;
+        $this->unit = $collaborator->unit_id;
         $this->units = Unit::all();
     }
     public function render()

@@ -41,6 +41,12 @@ class FlagEdit extends Component
         }
     }
 
+    public function mount($flag)
+    {
+        $this->group = $flag->economic_group_id;
+        $this->nome = $flag->nome;
+    }
+
   
     public function render()
     {
