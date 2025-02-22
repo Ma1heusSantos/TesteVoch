@@ -29,7 +29,6 @@ git clone https://github.com/Ma1heusSantos/TesteVoch.git
 
 ```bash
     composer install
-
 ```
 
 ### 2. clonar o arquivo .env-example
@@ -38,12 +37,12 @@ clone o arquivo .env-example e altere o nome para .env
 
 ### 3. configure o arquivo apartir das configurações a seguir
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=economicGroup
-DB_USERNAME=(seu-usuario)
-DB_PASSWORD=(sua senha)
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=economicGroup
+    DB_USERNAME=(seu-usuario)
+    DB_PASSWORD=(sua senha)
 
 ### 4.Rode as migrations
 
