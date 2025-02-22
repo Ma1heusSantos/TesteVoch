@@ -47,12 +47,18 @@ DB_PASSWORD=(sua senha)
 
 ### 4.Rode as migrations
 
-    Rode na pasta do projeto o comando php artisan migrate --seed
+    Rode na pasta do projeto o comando :
+
+    php artisan migrate --seed
 
 ### 5.inicie o servidor laravel
 
-    Rode na pasta do projeto o comando php artisan serve
+    Rode na pasta do projeto o comando
+
+    php artisan serve
 
 ### 6.inicie o npm
 
-    Rode na pasta do projeto o comando npm run dev
+    Rode na pasta do projeto o comando
+
+    npm run dev
